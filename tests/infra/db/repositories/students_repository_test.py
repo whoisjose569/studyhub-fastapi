@@ -20,3 +20,24 @@ def test_insert_student(db_session):
         except Exception as exception:
             db_session.rollback()
             raise exception
+
+def test_select_student(db_session):
+    try:
+        student = StudentsEntity(name='Jose', email='test@test')
+        db_session.add(student)
+        db_session.commit()
+        
+        student_repository = StudentsRepository()
+        students = student_repository.select_student()
+        
+        students_on_db = db_session.query(StudentsEntity).all()
+        
+        assert students_on_db[0].name == students[0].name
+        assert students_on_db[0].email == students[0].email
+        
+        db_session.delete(student)
+        db_session.commit()
+             
+    except Exception as exception:
+            db_session.rollback()
+            raise exception
