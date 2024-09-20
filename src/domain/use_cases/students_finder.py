@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class UserFinder(ABC):
+class StudentFinder(ABC):
     
     @abstractmethod
     def find(self, search: str) -> dict:
