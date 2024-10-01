@@ -1,4 +1,4 @@
-from src.domain.use_cases.students_finder import StudentFinder as StudentFinderInterface
+from src.domain.use_cases.student_finder import StudentFinder as StudentFinderInterface
 from src.data.interfaces.student_repository import StudentsRepositoryInterface
 
 
