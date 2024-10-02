@@ -14,8 +14,8 @@ def test_find():
     assert repository.select_student_attributes['search'] == search
     
     assert response['type'] == 'Students'
-    assert response['count'] == len(response['data'])
-    assert response['data'] != []
+    assert response['count'] == len(response['students'])
+    assert response['students'] != []
 
 def test_find_error_user_not_found():
     class StudentsRepositoryError(StudentsRepositorySpy):

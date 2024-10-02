@@ -14,4 +14,4 @@ def test_register():
     assert repository.insert_student_attributes["email"] == email
     
     assert response['type'] == 'Students'
-    assert response['data'] != []
+    assert response['students'] != []
