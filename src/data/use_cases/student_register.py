@@ -11,7 +11,7 @@ class StudentRegister(StudentRegisterInterface):
         
         response = {
             "type": "Students",
-            "data": {
+            "students": {
                 "name": name,
                 "email": email
             }

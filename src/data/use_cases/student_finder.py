@@ -14,7 +14,7 @@ class StudentFinder(StudentFinderInterface):
         response = {
             "type": "Students",
             "count": len(students),
-            "data": [{
+            "students": [{
                 "id": student.id,
                 "name": student.name,
                 "email": student.email,
