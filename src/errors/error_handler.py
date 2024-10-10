@@ -1,6 +1,6 @@
 from fastapi import Request, FastAPI
 from fastapi.responses import JSONResponse
-from .types import HttpNotFoundError, HttpBadRequestError
+from .types import HttpNotFoundError, HttpBadRequestError, HttpConflictError
 
 def handle_errors(app: FastAPI):
 
@@ -27,7 +27,19 @@ def handle_errors(app: FastAPI):
                 }]
             },
         )
-
+        
+    @app.exception_handler(HttpConflictError)
+    async def conflict_handler(request: Request, exception: HttpConflictError):
+        return JSONResponse(
+            status_code=exception.status_code,
+            content={
+                "error": [{
+                    "title": exception.name,
+                    "detail": exception.message
+                }]
+            },
+        )
+        
     @app.exception_handler(Exception)
     async def generic_exception_handler(request: Request, exception: Exception):
         return JSONResponse(
