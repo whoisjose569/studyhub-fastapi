@@ -1,6 +1,6 @@
 from src.domain.use_cases.student_finder import StudentFinder as StudentFinderInterface
 from src.data.interfaces.student_repository import StudentsRepositoryInterface
-
+from src.errors.types import HttpNotFoundError
 
 class StudentFinder(StudentFinderInterface):
     def __init__(self, students_repository: StudentsRepositoryInterface) -> None:
@@ -9,7 +9,7 @@ class StudentFinder(StudentFinderInterface):
     def find(self, search: str) -> dict:
         students = self.__students_repository.select_student(search)
         if students == []:
-            raise Exception("No students found with the given search term")
+            raise HttpNotFoundError("No students found with the given search term")
         
         response = {
             "type": "Students",
