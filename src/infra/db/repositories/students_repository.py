@@ -1,3 +1,4 @@
+from typing import Optional
 from src.infra.db.settings.connection import DBConnectionHandler
 from src.infra.db.entities.students import Students as StudentsEntity
 from src.data.interfaces.student_repository import StudentsRepositoryInterface
@@ -23,6 +24,16 @@ class StudentsRepository(StudentsRepositoryInterface):
             try:
                 students_on_db = database.db_session.query(StudentsEntity).filter(or_(StudentsEntity.name.ilike(f'%{search}%'),StudentsEntity.email.ilike(f'%{search}%'))).all()
                 return students_on_db
+            except Exception as exception:
+                database.db_session.rollback()
+                raise exception
+    
+    @classmethod
+    def select_student_by_id(cls, id: int) -> Optional[Students]:
+        with DBConnectionHandler() as database:
+            try:
+                student = database.db_session.query(StudentsEntity).filter_by(id=id).first()
+                return student
             except Exception as exception:
                 database.db_session.rollback()
                 raise exception
