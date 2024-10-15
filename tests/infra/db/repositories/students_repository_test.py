@@ -41,3 +41,22 @@ def test_select_student(db_session):
     except Exception as exception:
             db_session.rollback()
             raise exception
+
+def test_select_student_by_id(db_session):
+    try:
+        student = StudentsEntity(id=32, name='teste', email='teste2@teste.com')
+        db_session.add(student)
+        db_session.commit()
+        
+        student_repository = StudentsRepository()
+        student_on_db = student_repository.select_student_by_id(32)
+        
+        assert student_on_db.id == student.id
+        
+        db_session.delete(student)
+        db_session.commit()
+    except Exception as exception:
+        db_session.rollback()
+        raise exception
+        
+        

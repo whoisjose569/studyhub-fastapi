@@ -17,3 +17,7 @@ class StudentsRepositorySpy:
             Students(1,search,'test@test','2024-10-15'),
             Students(2,search,'jove@test','2024-01-02')
         ]
+    
+    def select_student_by_id(self, id: int) -> Students:
+        self.select_student_attributes['id'] = id
+        return Students(1,"teste","teste@teste.com",'2024-10-15' )
