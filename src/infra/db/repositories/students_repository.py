@@ -37,3 +37,14 @@ class StudentsRepository(StudentsRepositoryInterface):
             except Exception as exception:
                 database.db_session.rollback()
                 raise exception
+    
+    @classmethod
+    def delete_student(cls, id: int) -> None:
+        with DBConnectionHandler() as database:
+            try:
+                student = database.db_session.query(StudentsEntity).filter_by(id=id).first()
+                database.db_session.delete(student)
+                database.db_session.commit()
+            except Exception as exception:
+                database.db_session.rollback()
+                raise exception
