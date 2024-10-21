@@ -14,3 +14,7 @@ class StudentsRepositoryInterface(ABC):
     @abstractmethod
     def select_student_by_id(self, id: int) -> Optional[Students]:
         pass
+    
+    @abstractmethod
+    def delete_student(self, id: int) -> dict:
+        pass
