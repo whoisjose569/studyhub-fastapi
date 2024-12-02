@@ -4,7 +4,8 @@ from src.main.composers.student_finder_composer import student_finder_composer
 from src.main.composers.student_register_composer import student_register_composer
 from src.main.composers.student_finder_by_id_composer import student_finder_by_id_composer
 from src.main.composers.student_delete_composer import student_delete_composer
-from src.presentation.schemas.student_search_schema import StudentSearchSchema, StudentInputSchema
+from src.main.composers.student_update_composer import student_updater_composer
+from src.presentation.schemas.student_search_schema import StudentSearchSchema, StudentInputSchema, StudentEmailSchema
 from src.presentation.http_types.http_request import HttpRequest
 
 router = APIRouter()
@@ -32,3 +33,10 @@ async def delete_student(id: int):
     http_request = HttpRequest(path_params={"id":id})
     http_response = await request_adapter(http_request, student_delete_composer())
     return http_response.body
+
+@router.patch('/students/{id}')
+async def update_student(id: int, email: StudentEmailSchema):
+    http_request = HttpRequest(body={"id": id,"email": email.email})
+    http_response = await request_adapter(http_request, student_updater_composer())
+    return http_response.body
+    
