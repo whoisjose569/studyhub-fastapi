@@ -23,3 +23,6 @@ class StudentInputSchema(BaseModel):
 
     class Config:
         anystr_strip_whitespace = True
+
+class StudentEmailSchema(BaseModel):
+    email: EmailStr
