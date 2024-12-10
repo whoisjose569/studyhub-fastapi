@@ -1,4 +1,4 @@
-from src.domain.use_cases.student_finder_by_id import StudentFinderById as StudentFinderByIdInterface
+from src.domain.use_cases.students_use_cases.student_finder_by_id import StudentFinderById as StudentFinderByIdInterface
 from src.data.interfaces.student_repository import StudentsRepositoryInterface
 from src.errors.types import HttpNotFoundError
 

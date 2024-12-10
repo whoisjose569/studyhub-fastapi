@@ -1,4 +1,4 @@
-from src.domain.use_cases.student_delete import StudentDelete as StudentDeleteInterface
+from src.domain.use_cases.students_use_cases.student_delete import StudentDelete as StudentDeleteInterface
 from src.data.interfaces.student_repository import StudentsRepositoryInterface
 from src.errors.types import HttpNotFoundError
 

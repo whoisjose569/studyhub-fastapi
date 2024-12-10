@@ -1,4 +1,4 @@
-from src.domain.use_cases.student_register import StudentRegister as StudentRegisterInterface
+from src.domain.use_cases.students_use_cases.student_register import StudentRegister as StudentRegisterInterface
 from src.data.interfaces.student_repository import StudentsRepositoryInterface
 from src.errors.types.http_conflict import HttpConflictError
 
