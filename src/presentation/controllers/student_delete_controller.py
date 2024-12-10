@@ -1,7 +1,7 @@
 from src.presentation.http_types.http_request import HttpRequest
 from src.presentation.http_types.http_response import HttpResponse
 from src.presentation.interfaces.controller_interface import ControllerInterface
-from src.domain.use_cases.student_delete import StudentDelete as StudentDeleteInterface
+from src.domain.use_cases.students_use_cases.student_delete import StudentDelete as StudentDeleteInterface
 
 class StudentDeleteController(ControllerInterface):
     def __init__(self, use_case: StudentDeleteInterface) -> None:
